@@ -48,4 +48,12 @@ public class Person extends Record {
                 ", phone='" + phone + '\'' +
                 '}';
     }
+
+    @Override
+    public boolean contains(String str) {
+        return firstName.contains(str)
+                || lastName.contains(str)
+                || phone.contains(str)
+                || email.contains(str);
+    }
 }

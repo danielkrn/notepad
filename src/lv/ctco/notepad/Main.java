@@ -10,10 +10,13 @@ public class Main {
     static List<Record> records = new ArrayList<>();
 
     public static void main(String[] args) {
-        for (; ; ) {
+        for (; ;) {
             System.out.print("cmd: ");
             String cmd = scanner.next();
             switch (cmd) {
+                case "search":
+                    search();
+                    break;
                 case "cp":
                 case "createPerson":
                     createPerson();
@@ -34,6 +37,15 @@ public class Main {
                     return;
                 default:
                     System.out.println("Wrong command. Try 'help'");
+            }
+        }
+    }
+
+    private static void search() {
+        String ss = askString("What do you want to find?");
+        for (Record r : records) {
+            if (r.contains(ss)) {
+                System.out.println(r);
             }
         }
     }

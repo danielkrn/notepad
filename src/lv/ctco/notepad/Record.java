@@ -1,6 +1,6 @@
 package lv.ctco.notepad;
 
-public class Record {
+public abstract class Record {
     private static int counter = 0;
     private int id;
 
@@ -8,6 +8,8 @@ public class Record {
         counter++;
         id = counter;
     }
+
+    public abstract boolean contains(String str);
 
     public int getId() {
         return id;

@@ -18,4 +18,9 @@ public class StickyNote extends Record {
                 ", text='" + text + '\'' +
                 '}';
     }
+
+    @Override
+    public boolean contains(String str) {
+        return text.contains(str);
+    }
 }
