@@ -7,15 +7,20 @@ import java.util.Scanner;
 
 public class Main {
     static Scanner scanner = new Scanner(System.in);
-    static List<Person> records = new ArrayList<>();
+    static List<Record> records = new ArrayList<>();
 
     public static void main(String[] args) {
         for (; ; ) {
             System.out.print("cmd: ");
             String cmd = scanner.next();
             switch (cmd) {
-                case "create":
+                case "cp":
+                case "createPerson":
                     createPerson();
+                    break;
+                case "cn":
+                case "createNote":
+                    createStickyNote();
                     break;
                 case "help":
                     showHelp();
@@ -33,11 +38,18 @@ public class Main {
         }
     }
 
+    private static void createStickyNote() {
+        String txt = askString("Enter text");
+        StickyNote sn = new StickyNote();
+        sn.setText(txt);
+        records.add(sn);
+    }
+
     private static void deleteRecordById() {
         int id = askInt("ID to delete");
         for (int i = 0; i < records.size(); i++) {
-            Person p = records.get(i);
-            if (p.getId() == id) {
+            Record r = records.get(i);
+            if (r.getId() == id) {
                 records.remove(i);
                 break;
             }
