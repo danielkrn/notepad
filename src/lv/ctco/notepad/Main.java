@@ -43,11 +43,11 @@ public class Main {
 
     private static void search() {
         String ss = askString("What do you want to find?");
-        for (Record r : records) {
-            if (r.contains(ss)) {
-                System.out.println(r);
-            }
-        }
+
+        records.stream()
+                .filter(r -> r.contains(ss))
+                .forEach(System.out::println);
+
     }
 
     private static void createRecord(Record record) {
