@@ -11,6 +11,8 @@ public abstract class Record {
 
     public abstract boolean contains(String str);
 
+    public abstract void askData();
+
     public int getId() {
         return id;
     }

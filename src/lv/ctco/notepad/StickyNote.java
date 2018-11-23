@@ -23,4 +23,9 @@ public class StickyNote extends Record {
     public boolean contains(String str) {
         return text.contains(str);
     }
+
+    @Override
+    public void askData() {
+        text = Main.askString("Enter text");
+    }
 }

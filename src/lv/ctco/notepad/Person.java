@@ -5,6 +5,7 @@ public class Person extends Record {
     private String lastName;
     private String email;
     private String phone;
+    private String gender;
 
     public String getFirstName() {
         return firstName;
@@ -38,6 +39,14 @@ public class Person extends Record {
         this.phone = phone;
     }
 
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
     @Override
     public String toString() {
         return "Person{" +
@@ -46,6 +55,7 @@ public class Person extends Record {
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
                 ", phone='" + phone + '\'' +
+                ", gender='" + gender + '\'' +
                 '}';
     }
 
@@ -54,6 +64,16 @@ public class Person extends Record {
         return firstName.contains(str)
                 || lastName.contains(str)
                 || phone.contains(str)
+                || gender.contains(str)
                 || email.contains(str);
+    }
+
+    @Override
+    public void askData() {
+        firstName = Main.askString("First Name");
+        lastName = Main.askString("Last Name");
+        email = Main.askString("Email");
+        phone = Main.askPhone("Phone");
+        gender = Main.askString("Gender");
     }
 }

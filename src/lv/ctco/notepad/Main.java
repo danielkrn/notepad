@@ -19,11 +19,11 @@ public class Main {
                     break;
                 case "cp":
                 case "createPerson":
-                    createPerson();
+                    createRecord(new Person());
                     break;
                 case "cn":
                 case "createNote":
-                    createStickyNote();
+                    createRecord(new StickyNote());
                     break;
                 case "help":
                     showHelp();
@@ -50,11 +50,10 @@ public class Main {
         }
     }
 
-    private static void createStickyNote() {
-        String txt = askString("Enter text");
-        StickyNote sn = new StickyNote();
-        sn.setText(txt);
-        records.add(sn);
+    private static void createRecord(Record record) {
+        record.askData();
+        records.add(record);
+        System.out.println(record);
     }
 
     private static void deleteRecordById() {
@@ -75,24 +74,6 @@ public class Main {
 
     private static void showHelp() {
 
-    }
-
-    private static void createPerson() {
-        Person p = new Person();
-
-        String firstName = askString("First Name");
-        p.setFirstName(firstName);
-
-        String lastName = askString("Last Name");
-        p.setLastName(lastName);
-
-        String email = askString("Email");
-        p.setEmail(email);
-
-        String phone = askPhone("Phone");
-        p.setPhone(phone);
-
-        records.add(p);
     }
 
     public static String askString(String msg) {
