@@ -1,9 +1,11 @@
 package lv.ctco.notepad;
 
+import java.time.LocalDate;
 import java.time.LocalTime;
 
 public class Alarm extends StickyNote implements Expirable {
     private LocalTime time;
+    private LocalDate dismissedAt;
 
     @Override
     public boolean contains(String str) {
@@ -40,7 +42,16 @@ public class Alarm extends StickyNote implements Expirable {
 
     @Override
     public boolean isExpired() {
+        LocalDate nowD = LocalDate.now();
+        if (dismissedAt != null && dismissedAt.isEqual(nowD)) {
+            return false;
+        }
         var now = LocalTime.now();
         return now.isAfter(time);
+    }
+
+    @Override
+    public void dismiss() {
+        dismissedAt = LocalDate.now();
     }
 }

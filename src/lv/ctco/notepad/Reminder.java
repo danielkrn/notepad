@@ -5,6 +5,12 @@ import java.time.LocalDateTime;
 
 public class Reminder extends Alarm implements Expirable {
     private LocalDate date;
+    private boolean dismissed = false;
+
+    @Override
+    public void dismiss() {
+        dismissed = true;
+    }
 
     @Override
     public boolean contains(String str) {
@@ -28,6 +34,9 @@ public class Reminder extends Alarm implements Expirable {
 
     @Override
     public boolean isExpired() {
+        if (dismissed) {
+            return false;
+        }
         LocalDateTime now = LocalDateTime.now();
         LocalDateTime dt = LocalDateTime.of(getDate(), getTime());
         return now.isAfter(dt);

@@ -5,6 +5,7 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.Scanner;
 
 import static java.time.format.DateTimeFormatter.ofPattern;
@@ -23,6 +24,9 @@ public class Main {
             System.out.print("cmd: ");
             String cmd = scanner.next();
             switch (cmd) {
+                case "dismiss":
+                    dismiss();
+                    break;
                 case "expired":
                     listExpired();
                     break;
@@ -60,6 +64,17 @@ public class Main {
             }
         }
     }
+
+    private static void dismiss() {
+        int id = askInt("Enter ID of record to dismiss");
+        Optional<Expirable> first = records.stream()
+                .filter(r -> r.getId() == id)
+                .filter(r -> r instanceof Expirable)
+                .map(r -> (Expirable) r)
+                .findFirst();
+        first.ifPresent(Expirable::dismiss);
+    }
+
 
     private static void listExpired() {
         records.stream()
