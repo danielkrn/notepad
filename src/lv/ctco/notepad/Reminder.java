@@ -2,7 +2,7 @@ package lv.ctco.notepad;
 
 import java.time.LocalDate;
 
-public class Reminder extends Alarm {
+public class Reminder extends Alarm implements Expirable {
     private LocalDate date;
 
     @Override
@@ -23,6 +23,11 @@ public class Reminder extends Alarm {
 
     public void setDate(LocalDate date) {
         this.date = date;
+    }
+
+    @Override
+    public boolean isExpired() {
+        return super.isExpired();
     }
 
     @Override

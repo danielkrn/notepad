@@ -2,7 +2,7 @@ package lv.ctco.notepad;
 
 import java.time.LocalTime;
 
-public class Alarm extends StickyNote {
+public class Alarm extends StickyNote implements Expirable {
     private LocalTime time;
 
     @Override
@@ -28,5 +28,11 @@ public class Alarm extends StickyNote {
                 ", date='" + getFormattedTime() + '\'' +
                 ", text='" + getText() + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean isExpired() {
+        var now = LocalTime.now();
+        return now.isAfter(time);
     }
 }
