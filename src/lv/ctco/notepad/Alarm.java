@@ -21,6 +21,14 @@ public class Alarm extends StickyNote implements Expirable {
         super.askData();
     }
 
+    public LocalTime getTime() {
+        return time;
+    }
+
+    public void setTime(LocalTime time) {
+        this.time = time;
+    }
+
     @Override
     public String toString() {
         return "Reminder{" +
