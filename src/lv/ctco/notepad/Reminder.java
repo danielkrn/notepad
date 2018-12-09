@@ -1,7 +1,6 @@
 package lv.ctco.notepad;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 public class Reminder extends Alarm implements Expirable {
     private LocalDate date;
@@ -14,7 +13,7 @@ public class Reminder extends Alarm implements Expirable {
 
     @Override
     public void askData() {
-        date = Main.askDate("Remainder date (" + Main.DATE_PATTERN + ")");
+        date = Main.askDate("Remainder date");
         super.askData();
     }
 
@@ -28,9 +27,7 @@ public class Reminder extends Alarm implements Expirable {
 
     @Override
     public boolean isExpired() {
-        LocalDateTime now = LocalDateTime.now();
-        LocalDateTime dt = LocalDateTime.of(getDate(), getTime());
-        return now.isAfter(dt);
+        return super.isExpired();
     }
 
     @Override
