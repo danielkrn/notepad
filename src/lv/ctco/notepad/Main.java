@@ -23,9 +23,6 @@ public class Main {
             System.out.print("cmd: ");
             String cmd = scanner.next();
             switch (cmd) {
-                case "expired":
-                    listExpired();
-                    break;
                 case "search":
                     search();
                     break;
@@ -59,23 +56,6 @@ public class Main {
                     System.out.println("Wrong command. Try 'help'");
             }
         }
-    }
-
-    private static void listExpired() {
-        records.stream()
-                .filter(r -> r instanceof Expirable)
-                .map(r -> (Expirable)r)
-                .filter(Expirable::isExpired)
-                .forEach(System.out::println);
-
-//        for (Record r : records) {           // stream
-//            if (r instanceof Expirable) {    // 1st filter
-//                Expirable e = (Expirable) r; // map
-//                if (e.isExpired()) {         // 2nd filter
-//                    System.out.println(e);   // forEach
-//                }
-//            }
-//        }
     }
 
     private static void search() {
